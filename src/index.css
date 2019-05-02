@@ -1,0 +1,103 @@
+
+html {
+  color: #333;
+  background: #fde4c5;
+  font-size: 1em;
+  line-height: 1.4;
+  font-family: 'Merriweather', serif;
+}
+
+@media (max-width: 800px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+
+section.welcome div.intro {
+  font-family: 'Cormorant Unicase', serif;
+  font-weight: 700;
+  text-align: center;
+  font-size: 4em;
+  margin: 3rem 0;
+  animation: fadeIn 1s 0.5s;
+  animation-fill-mode: both;
+}
+
+section.welcome h1 {
+  font-family: 'Cormorant Unicase', serif;
+  font-weight: 700;
+  font-size: 7em;
+  text-align: center;
+  margin: 3rem 0;
+  animation: fadeIn 1s 1s;
+  animation-fill-mode: both;
+}
+
+section.welcome time {
+  display: block;
+  font-family: 'Cormorant Unicase', serif;
+  font-weight: 700;
+  font-size: 3em;
+  text-align: center;
+  animation: fadeIn 1s 1.5s;
+  animation-fill-mode: both;
+}
+
+section.welcome p {
+  font-size: 2em;
+  text-align: center;
+  margin: 3rem auto;
+  max-width: 600px;
+  animation: fadeIn 1s 1.5s;
+  animation-fill-mode: both;
+}
+
+a.button {
+  display: block;
+  font-family: 'Cormorant Unicase', serif;
+  font-weight: 700;
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  background: #d4b58e;
+}
+
+section.rules h1 {
+  font-family: 'Cormorant Unicase', serif;
+  font-weight: 700;
+  font-size: 5em;
+  text-align: center;
+  margin: 3rem 0;
+}
+
+section.rules p {
+  max-width: 600px;
+  margin: 3rem auto;
+  font-family: 'Cormorant Unicase', serif;
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+section.rules ul {
+  max-width: 600px;
+  margin: 3rem auto;
+  font-size: 1.5rem;
+}
+
+section.rules li {
+  margin: 1rem 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
