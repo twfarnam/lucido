@@ -8,7 +8,7 @@ import Payment from './Payment.js';
 
 export default function App(props) { 
   return (
-    <Router>
+    <Router basename="/lucido">
       <ScrollToTop />
       <Route path="/" exact component={ Welcome } />
       <Route path="/reglas" component={ Rules } />
