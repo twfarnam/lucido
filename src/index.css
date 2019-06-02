@@ -34,6 +34,27 @@ section.welcome h1 {
   animation-fill-mode: both;
 }
 
+section.welcome main {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+}
+
+section.welcome img {
+  display: block;
+  width: 40%;
+  margin: auto;
+}
+
+@media (max-width: 800px) {
+  section.welcome main {
+    display: block;
+  }
+  section.welcome img {
+    width: 80%;
+  }
+}
+
 section.welcome time {
   display: block;
   font-family: 'Cormorant Unicase', serif;
@@ -49,11 +70,16 @@ section.welcome p {
   text-align: center;
   margin: 3rem auto;
   max-width: 600px;
-  animation: fadeIn 1s 1.5s;
+}
+
+section.welcome p,
+section.welcome img {
+  animation: fadeIn 1s 2s;
   animation-fill-mode: both;
 }
 
-a.button {
+a.button,
+button {
   display: block;
   font-family: 'Cormorant Unicase', serif;
   font-weight: 700;
@@ -87,8 +113,35 @@ section.rules ul {
   font-size: 1.5rem;
 }
 
+section.rules img {
+  display: block;
+  width: 70%;
+  margin: auto;
+  float: right;
+  shape-outside: url('/bat@0,25x.png');
+}
+
+@media (min-width: 800px) {
+  section.rules img {
+    margin-right: -100px;
+  }
+}
+
 section.rules li {
   margin: 1rem 0;
+}
+
+section.form h1 {
+  text-align: center;
+}
+
+section.form form.ui {
+  max-width: 600px;
+  margin: auto;
+}
+
+section.form input[name=count] {
+  max-width: 50px;
 }
 
 @keyframes fadeIn {
