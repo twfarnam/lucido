@@ -34,6 +34,9 @@ export class Form extends Component {
 
   onSubmit = async event => {
     const data  = { ...this.state.data, total: this.cost() }
+    if (data.nombre == '') return alert('Ponga su nombre, por favor');
+    if (data.apellido == '') return alert('Ponga su apellido, por favor');
+    if (data.count == 0 && data.countVIP == 0) return alert('Elija sus boletos, por favor');
     this.setState({ loading: true });
     const url = 'https://esmbuy46ni.execute-api.us-east-1.amazonaws.com/default/lucido'
     const options = { body: JSON.stringify(this.state.data), method: 'POST' }

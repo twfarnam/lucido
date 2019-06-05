@@ -8,12 +8,11 @@ export default class List extends React.Component {
   }
 
   async componentDidMount() {
-    console.log('wtf');
     const url = 'https://esmbuy46ni.execute-api.us-east-1.amazonaws.com/default/lucido'
     try {
       const response = await fetch(url + location.search)
       if (response.status >= 200 && response.status < 300) {
-        const data = response.json();
+        const { Items: data } = await response.json();
         this.setState({ data });
       } else {
         const error = (await response.text()) || `Error ${ response.status }`
@@ -35,10 +34,34 @@ export default class List extends React.Component {
     }
 
     return (
-      <div>
-        <pre>
-          { JSON.stringify(this.state.data, null, 2) }
-        </pre>
+      <div className="List">
+        <h1>Bestias, 15 Junio</h1>
+        <table>
+          <thead>
+            <tr>
+              <td>Nombre</td>
+              <td>Apellido</td>
+              <td>Concepto</td>
+              <td>Actor</td>
+              <td>#</td>
+              <td>#vip</td>
+              <td>Total</td>
+            </tr>
+          </thead>
+          <tbody>
+            { this.state.data.map((row) => (
+              <tr key={ row.id }>
+                <td>{ row.nombre }</td>
+                <td>{ row.apellido }</td>
+                <td>{ row.passphrase }</td>
+                <td>{ row.actor }</td>
+                <td>{ row.count }</td>
+                <td>{ row.countVIP }</td>
+                <td>{ row.total }</td>
+              </tr>
+            )) }
+          </tbody>
+        </table>
       </div>
     );
   }

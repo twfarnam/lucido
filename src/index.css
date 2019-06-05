@@ -261,8 +261,16 @@ section.payment iframe {
 }
 
 
-div.list {
+div.List {
   max-width: 600px;
   margin: auto;
+}
+
+div.List thead {
+  font-weight: bold;
+}
+
+div.List td {
+  min-width: 100px;
 }
 
