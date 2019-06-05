@@ -7,30 +7,20 @@ import Form from './Form.js'
 import List from './List.js'
 import Payment from './Payment.js'
 
-export default class App extends React.Component { 
+export const serverlessURL = (
+  'https://esmbuy46ni.execute-api.us-east-1.amazonaws.com/default/lucido'
+);
 
-  state = {
-    passphrase: '',
-    total: 0,
-  }
-
-  onFormSubmit = (data) => this.setState(data)
-
-  render() {
-    return (
-      <Router>
-        <ScrollToTop />
-        <Route path="/list" exact component={ List } />
-        <Route path="/" exact component={ Welcome } />
-        <Route path="/reglas" component={ Rules } />
-        <Route path="/formulario" render={ () =>
-          <Form onFormSubmit={ this.onFormSubmit } />
-        } />
-        <Route path="/pago" component={ () =>
-          <Payment { ...this.state } />
-        } />
-      </Router>
-    )
-  }
-
+export default function App() { 
+  return (
+    <Router>
+      <ScrollToTop />
+      <Route path="/list" exact component={ List } />
+      <Route path="/" exact component={ Welcome } />
+      <Route path="/reglas" component={ Rules } />
+      <Route path="/formulario" component={ Form } />
+      <Route path="/pago/:id" component={ Payment } />
+    </Router>
+  )
 }
+

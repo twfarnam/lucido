@@ -1,44 +1,71 @@
 import React from 'react'
+import { serverlessURL } from './App'
+import { Loader } from 'semantic-ui-react'
 
-export default function Payment({ total, passphrase }) {
-  return (
-    <section className="payment">
+export default class Payment extends React.Component {
 
-      <h1>¡Gracias!</h1>
+  state = {
+    loading: true,
+  }
 
-      <p>Para confirmar su asistencia, favor de pagar sus boletos con transferencia a la siguente cuenta</p>
+  async componentDidMount() {
+    const { id } = this.props.match.params
+    console.log({ id })
+    const response = await fetch(serverlessURL + `?id=${ id }`)
+    if (response.status >= 200 && response.status < 300) {
+      const { total, passphrase } = await response.json()
+      console.log({ total, passphrase })
+      this.setState({ total, passphrase, loading: false })
+    } else {
+      alert(await response.text())
+      this.setState({ loading: false })
+    }
+  }
 
-      <table>
-        <tbody>
-          <tr>
-            <td>Banco</td>
-            <td>Citibanamex</td>
-          </tr>
-          <tr>
-            <td>Clabe</td>
-            <td>CLABE DE MOIRA</td>
-          </tr>
-          <tr>
-            <td>Cantidad</td>
-            <td>${ total }</td>
-          </tr>
-          <tr>
-            <td>Concepto</td>
-            <td>{ passphrase }</td>
-          </tr>
-        </tbody>
-      </table>
+  render() {
+    // return <Loader />;
+    if (this.state.loading) return <Loader />;
 
-      <div>15 Junio 2018, 10:10pm</div>
+    return (
+      <section className="payment">
 
-      <div>
-        <div>Teatro Lúcido</div>
-        <div>Calle Dr. Enrique González Martínez 234</div>
-        <div>Santa María la Ribera</div>
-      </div>
+        <h1>¡Gracias!</h1>
 
-      <iframe src="https://maps.google.com/maps?q=teatro%20lucido&t=&z=14&ie=UTF8&iwloc=&output=embed"></iframe>
+        <p>Para confirmar su asistencia, favor de pagar sus boletos con transferencia a la siguente cuenta</p>
 
-    </section>
-  )
+        <table>
+          <tbody>
+            <tr>
+              <td>Banco</td>
+              <td>Citibanamex</td>
+            </tr>
+            <tr>
+              <td>Clabe</td>
+              <td>CLABE DE MOIRA</td>
+            </tr>
+            <tr>
+              <td>Cantidad</td>
+              <td>${ this.state.total }</td>
+            </tr>
+            <tr>
+              <td>Concepto</td>
+              <td>{ this.state.passphrase }</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div>15 Junio 2018, 10:10pm</div>
+
+        <div>
+          <div>Teatro Lúcido</div>
+          <div>Calle Dr. Enrique González Martínez 234</div>
+          <div>Santa María la Ribera</div>
+        </div>
+
+        <iframe src="https://maps.google.com/maps?q=teatro%20lucido&t=&z=14&ie=UTF8&iwloc=&output=embed"></iframe>
+
+      </section>
+    )
+  }
+
 }

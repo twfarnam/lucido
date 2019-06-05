@@ -25,24 +25,31 @@ exports.handler = (event, context, callback) => {
 
   switch (event.httpMethod) {
     case 'GET':
-      const badSecret = (
-        event.queryStringParameters == null ||
-        event.queryStringParameters.secret != process.env['LUCIDO_SECRET']
-      )
-      if (badSecret) return renderError('Bad secret');
-      dynamo.scan({ TableName: 'lucido-tix' }, (err, res) => {
-        if (err) return renderError(err.message);
-        render(res);
-      });
+      if (event.queryStringParameters == null) renderError('No secret');
+      const { id, secret  } = event.queryStringParameters;
+      if (id) {
+        dynamo.getItem({ TableName: 'lucido-tix', Key: { id: id }, }, (err, res) => {
+          if (err) renderError(err.message);
+          else render(res.Item);
+        });
+      } else if (secret == process.env['LUCIDO_SECRET']) {
+        dynamo.scan({ TableName: 'lucido-tix' }, (err, res) => {
+          if (err) renderError(err.message);
+          else render(res);
+        });
+      } else {
+        renderError('Bad secret') 
+      }
       break;
     case 'POST':
       const Item = JSON.parse(event.body);
       Item.id = uuid.v4();
       Item.passphrase = makePassphrase();
+      Item.created_at = new Date().toISOString();
       const data = { TableName: 'lucido-tix', Item: Item };
       dynamo.putItem(data, (err, res) => {
         if (err) renderError(err.message);
-        render(Item);
+        else render(Item);
       });
       break;
     default:
@@ -67,34 +74,25 @@ const animals = [
   'Leopardo',
 ];
 
-const colors = [
+const modifier = [
   'dorado',
   'morado',
-  'azul',
   'verde',
   'negro',
-  'amarillo',
-  'gris',
   'castaño',
   'celeste',
   'verdeagua',
-  'rojo',
   'ocre',
-];
-
-const modifier = [
   'del desierto',
-  'de Asia',
   'marroquí',
   'en la mesa',
   'con cuernos',
-  'encuerado',
   'del infierno',
 ];
 
 const rand = (array) => array[Math.floor(array.length * Math.random())]
 
 function makePassphrase() {
-  return [ rand(animals), rand(colors), rand(modifier), ].join(' ') 
+  return rand(animals) + ' ' + rand(modifier);
 }
 

@@ -1,9 +1,10 @@
-# lucido
+# Bestiario
 
-Deploy to `gh-pages` branch:
+Deploy to GitHub with `/dist` folder in the `gh-pages` branch:
 
 ```
-git subtree split --prefix docs -b gh-pages
+npm run build
+git subtree split --prefix dist -b gh-pages
 git push -f origin gh-pages:gh-pages
 git branch -D gh-pages
 ```

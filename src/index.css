@@ -260,9 +260,8 @@ section.payment iframe {
   border: 0;
 }
 
-
-div.List {
-  max-width: 600px;
+div.List table {
+  border-collapse: collapse;
   margin: auto;
 }
 
@@ -271,6 +270,12 @@ div.List thead {
 }
 
 div.List td {
-  min-width: 100px;
+  border-bottom: 1px solid #333;
+}
+
+div.List td {
+  min-width: 60px;
+  margin: 0;
+  padding: 0.3rem 0.8rem;
 }
 

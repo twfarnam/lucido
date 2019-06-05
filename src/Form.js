@@ -39,15 +39,11 @@ export class Form extends Component {
     if (data.count == 0 && data.countVIP == 0) return alert('Elija sus boletos, por favor');
     this.setState({ loading: true });
     const url = 'https://esmbuy46ni.execute-api.us-east-1.amazonaws.com/default/lucido'
-    const options = { body: JSON.stringify(this.state.data), method: 'POST' }
+    const options = { body: JSON.stringify(data), method: 'POST' }
     const response = await fetch(url, options)
     if (response.status >= 200 && response.status < 300) {
-      const json = await response.json()
-      this.props.onFormSubmit({
-        total: data.total,
-        passphrase: json.passphrase,
-      });
-      this.props.history.push('/pago')
+      const { id } = await response.json()
+      this.props.history.push(`/pago/${ id }`)
     } else {
       alert(await response.text());  
       this.setState({ loading: false });
