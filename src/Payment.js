@@ -1,24 +1,44 @@
-import React from 'react';
+import React from 'react'
 
-export default function Payment() {
+export default function Payment({ total, passphrase }) {
   return (
     <section className="payment">
 
-      <p>25 Mayo 2018, 11:11pm</p>
+      <h1>¡Gracias!</h1>
 
-      <div>Teatro Lúcido</div>
-      <div>Calle Dr. Enrique González Martínez 234</div>
-      <div>Santa María la Ribera</div>
-      <a href="https://goo.gl/maps/usbtQAFYRtAP5q8k6">Mapa</a>
+      <p>Para confirmar su asistencia, favor de pagar sus boletos con transferencia a la siguente cuenta</p>
 
-      <p>Pagar sus boletos con deposito a la siguente cuenta</p>
+      <table>
+        <tbody>
+          <tr>
+            <td>Banco</td>
+            <td>Citibanamex</td>
+          </tr>
+          <tr>
+            <td>Clabe</td>
+            <td>CLABE DE MOIRA</td>
+          </tr>
+          <tr>
+            <td>Cantidad</td>
+            <td>${ total }</td>
+          </tr>
+          <tr>
+            <td>Concepto</td>
+            <td>{ passphrase }</td>
+          </tr>
+        </tbody>
+      </table>
 
-      <div>Banco: Bancomer</div>
-      <div>Clabe: 2309480234234</div>
-      <div>Concepto: El Lobo Dorado</div>
+      <div>15 Junio 2018, 10:10pm</div>
 
-      <p>Gracias por su asistencia</p>
+      <div>
+        <div>Teatro Lúcido</div>
+        <div>Calle Dr. Enrique González Martínez 234</div>
+        <div>Santa María la Ribera</div>
+      </div>
+
+      <iframe src="https://maps.google.com/maps?q=teatro%20lucido&t=&z=14&ie=UTF8&iwloc=&output=embed"></iframe>
 
     </section>
-  );
+  )
 }

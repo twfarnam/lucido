@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Welcome() {
   return (
@@ -8,7 +8,7 @@ export default function Welcome() {
 
       <h1>Bestiario</h1>
 
-      <time>25 Mayo 2018, 11:11pm</time>
+      <time>15 Junio 2018, 10:10pm</time>
 
       <main>
         <img className="cat" src="cat.png"/>
@@ -23,5 +23,5 @@ export default function Welcome() {
       </p>
 
     </section>
-  );
+  )
 }

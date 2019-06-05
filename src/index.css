@@ -5,6 +5,21 @@ html {
   font-size: 1em;
   line-height: 1.4;
   font-family: 'Merriweather', serif;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: 'Cormorant Unicase', serif;
+  font-weight: 700;
+  font-size: 4em;
+  text-align: center;
+  margin: 3rem 0;
+}
+
+*,
+:before,
+:after {
+  box-sizing: inherit;
 }
 
 @media (max-width: 800px) {
@@ -13,6 +28,10 @@ html {
   }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; } 
+  to { opacity: 1; }
+}
 
 section.welcome div.intro {
   font-family: 'Cormorant Unicase', serif;
@@ -25,11 +44,7 @@ section.welcome div.intro {
 }
 
 section.welcome h1 {
-  font-family: 'Cormorant Unicase', serif;
-  font-weight: 700;
   font-size: 7em;
-  text-align: center;
-  margin: 3rem 0;
   animation: fadeIn 1s 1s;
   animation-fill-mode: both;
 }
@@ -78,9 +93,9 @@ section.welcome img {
   animation-fill-mode: both;
 }
 
-a.button,
+.button,
+button.ui.button,
 button {
-  display: block;
   font-family: 'Cormorant Unicase', serif;
   font-weight: 700;
   display: inline-block;
@@ -89,14 +104,29 @@ button {
   font-size: 2rem;
   padding: 0.5rem 1rem;
   background: #d4b58e;
+  border-radius: 0;
+}
+
+.button:hover,
+button.ui.button:hover,
+button:hover {
+  background: #b09067;
+}
+
+.button:focus,
+button.ui.button:focus,
+button:focus {
+  background: #d4b58e;
+}
+
+.button:active,
+button.ui.button:active,
+button:active {
+  background: #9e815b;
 }
 
 section.rules h1 {
-  font-family: 'Cormorant Unicase', serif;
-  font-weight: 700;
   font-size: 5em;
-  text-align: center;
-  margin: 3rem 0;
 }
 
 section.rules p {
@@ -131,26 +161,108 @@ section.rules li {
   margin: 1rem 0;
 }
 
-section.form h1 {
-  text-align: center;
+section.form form.ui {
+  font-size: 1.3rem;
+  max-width: 600px;
+  margin: auto;
+  padding-bottom: 5rem;
 }
 
-section.form form.ui {
+section.form form.ui .field {
+  margin-bottom: 1rem;
+}
+
+section.form .ui.radio {
+  display: block;
+}
+
+section.form form.ui input {
+  width: calc(100% - 8px);
+  font-family: 'Cormorant Unicase', serif !important;
+}
+
+section.form .field.text {
+  margin: 2rem 0 1rem;
+}
+
+section.form .text.field > label,
+section.form .ui.form > label,
+section.form .label {
+  display: block;
+  font-weight: bold;
+  margin: 2rem 0 1rem;
+}
+
+section.form .ticket-incrementer {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin: .8rem 0 3rem;
+}
+
+section.form .ticket-incrementer .number {
+  min-width: 50px;
+}
+
+section.form .ticket-incrementer .button {
+  display: flex;
+  padding: 1rem;
+  line-height: 1;
+  margin: 0 1rem;
+}
+
+section.form .ticket-incrementer i {
+  display: block;
+  font-size: 1.2rem;
+}
+
+section.form .ticket-incrementer i:after {
+  display: block;
+}
+
+section.form .cost {
+  font-weight: bold;
+  margin: 1rem 0 2rem;
+}
+
+section.form button.ui.button.loading {
+  pointer-events: none;
+}
+
+section.payment {
   max-width: 600px;
   margin: auto;
 }
 
-section.form input[name=count] {
-  max-width: 50px;
+section.payment p {
+  font-weight: bold;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
+section.payment > * {
+  margin: 2rem 0;
+}
 
-  to {
-    opacity: 1;
-  }
+section.payment table {
+  border: 0;
+  border-spacing: 0;
+}
+section.payment td {
+  padding: 0 0.8rem;
+}
+section.payment td:first-child {
+  padding-left: 0;
+  font-weight: bold;
+}
+
+section.payment iframe {
+  width: calc(100% - 8px);
+  height: 300px;
+  border: 0;
+}
+
+
+div.list {
+  max-width: 600px;
+  margin: auto;
 }
 
